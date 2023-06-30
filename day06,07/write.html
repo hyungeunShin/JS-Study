@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+    <div id="wrapper">
+        <form action="write_action.html">
+            <h1>JS와 LS로 만드는 게시판</h1>
+            제목 <input type="text" name="title" id="" required><br>
+            작성자 <input type="text" name="writer" id="" required><br>
+            내용 <br>
+            <textarea name="content" cols="30" rows="10" required></textarea><br>
+            관련언어<br>
+            JS<input type="checkbox" name="skill" value="js" checked onclick="f3ck(this)">
+            JAVA<input type="checkbox" name="skill" value="java" onclick="f3ck(this)">
+            ORACLE<input type="checkbox" name="skill" value="oracle" onclick="f3ck(this)">
+            HTML<input type="checkbox" name="skill" value="html" onclick="f3ck(this)">
+            CSS<input type="checkbox" name="skill" value="css" onclick="f3ck(this)">
+            <br>
+            <button type="submit">전송</button>&nbsp;&nbsp;<button type="reset">다시쓰기</button>
+        </form>
+    </div>
+</body>
+<script>
+    const maxCnt = 3;
+    let curCnt = 1;
+
+    function f3ck(pThis) {
+        if(pThis.checked) {
+            curCnt++; 
+        } 
+
+        if(!pThis.checked) {
+            curCnt--;
+        }
+
+        if(curCnt > maxCnt) {
+            pThis.checked = false;
+            curCnt--;
+        }
+    }
+</script>
+</html>

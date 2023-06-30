@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<body>
+    <h1 id="id">프로그래머</h1>
+</body>
+<script>
+    //document.querySelector("#id").style.color = "blue";
+    //document.querySelector("#id").style["color"] = "blue";
+    var color = "color";
+    document.querySelector("#id").style[color] = "blue";
+    color = "background-color";
+    document.querySelector("#id").style[color] = "yellow";
+
+    //JSON (JavaScript Object Notation) : 대부분의 데이터통신 표준포맷
+
+    let name = "이길동";
+    //JSON의 키값은 문자열, "" 권장사항
+    var aaa = {     //new Object()
+        /* name: "홍길동",     //속성명은 변수처리가 되지 않는다, 문자열 처리되기 때문에 */
+        /* name : name, */
+        name,                 //속성명과 변수명이 같으면 하나로도 처리는 된다(권장 X)
+        "role": "인간",
+        "songs": ["aaa", "bbb"]
+    };
+
+    console.log(aaa);
+
+    //********* 배열식 접근법
+    /* let bbb = {
+        ["name"]: "홍길동",
+        ["role"]: "인간",
+        ["songs"]: ["aaa", "bbb"]
+    } */
+
+    /* let bbb = {
+        ["0"]: "홍길동",
+        ["1"]: "인간",
+        ["2"]: ["aaa", "bbb"]
+    } */
+
+
+    let bbb = {
+        [name]: "홍길동",
+        ["1"]: "인간",
+        ["2"]: ["aaa", "bbb"]
+    }
+    console.log("bbb", bbb);
+    //console.log("bbb[0]", bbb[0]);
+    console.log("bbb[1]", bbb[1]);
+    console.log("bbb[2]", bbb[2]);
+    //bbb.3 = "ppp";    변수 선언 규칙 위반(숫자로 변수명이 시작 될 순 없다)
+
+    
+</script>

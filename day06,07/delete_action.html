@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script src="./jsp.js"></script>
+<script>
+    let num = request.getParameter("num");
+
+    let dataArr = JSON.parse(localStorage.getItem("uglyGesi"));
+
+    for(let i = 0; i < dataArr.length; i++) {
+        if(dataArr[i].num == num) {
+            dataArr.splice(i, 1);
+
+            break;
+        }
+    }
+
+    localStorage.setItem("uglyGesi", JSON.stringify(dataArr));
+
+    alert("삭제됨");
+    location.replace("list.html");
+</script>

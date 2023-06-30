@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+    #disp {
+        width: 200px;
+        height: 200px;
+        background-color: orange;
+    }
+</style>
+</head>
+<body>
+    <h1>이미지 미리보기</h1>
+    <div id="disp" ondragover="fdover()" ondrop="fdrop()"></div>
+</body>
+<script>
+    let myDisp = document.querySelector("#disp");
+
+    function fdover() {
+        event.preventDefault();
+    }
+
+    function OneFileRead(pFile) {
+        var fileReader = new FileReader();
+
+        fileReader.onload = function() {
+            console.log(fileReader.result);
+
+            var vDiv = document.createElement("div");
+            vDiv.style.width = "200px";
+            vDiv.style.height = "200px";
+
+            var vImg = document.createElement("img");
+            vImg.src = fileReader.result;
+            vImg.height = 200;
+            vImg.width = 180;
+
+            vDiv.appendChild(vImg);
+            vDiv.innerHTML += `<span>${pFile.name}</span>`;
+            
+            myDisp.appendChild(vDiv); 
+        }
+        
+        fileReader.readAsDataURL(pFile);
+    }
+
+    function fdrop() {
+        event.preventDefault();
+        var files = event.dataTransfer.files;
+
+        myDisp.innerHTML = "";
+
+        for(let i = 0; i < files.length; i++) {
+            OneFileRead(files[i]);
+        }
+    }
+
+    window.addEventListener("dragover", function() {
+        event.preventDefault();
+    });
+
+    window.addEventListener("drop", function() {
+        event.preventDefault();
+    });
+</script>
+</html>

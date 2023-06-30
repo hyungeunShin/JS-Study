@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script>
+    //자동 형변환 문자열은 ""만 false 이다
+    //숫자는 오로지 0만 false 이다
+    //객체는 비어있든 비어있지 않든 무조건 true
+    //자주 사용
+    if(!0) {
+        alert("0000");
+    }
+
+    if("") {
+        alert("ㅎㅇㅎㅇ");
+    }
+
+    if("ㅎㅇㅎㅇ") {
+        alert("ㅂㅇㅂㅇ");
+    }
+
+    if([]) {
+        alert("빈 배열");
+    }
+
+    if({}) {
+        alert("빈 객체");
+    }
+
+    //원래 인터프리터 방식
+    //hoisting(호이스팅) => 선언부만 맨위로 올린다 ==> 성능향상
+    //alert(test());
+
+    //공식 선언법
+    //잘 사용하지 않는다
+    /* function test() {
+        //아무 내용도 안적으면 자동으로 return 생성
+        return "홍길동";
+    } */
+
+    //함수 선언 표현식
+    //표현식 ==> 1+2+3-4-6 ==> 연산을 통해서 한개의 결과로 도출
+    //alert(test());
+    //Cannot access 'test' before initialization 위에 있으면 에러남
+    /* const test = function() {
+        return "홍길동";
+    }
+    alert(test()); */
+
+    const test = function(pArg) {
+        pArg();
+        //alert(typeof(pArg));
+        return "홍길동";
+    }
+
+    // test(222);
+    // test("aaa");
+    // test([1,2,3]);
+    // test({name: "홍길동"});
+
+    //자주 사용된다
+    alert(test(function() {
+        alert("안녕");
+    }));
+</script>

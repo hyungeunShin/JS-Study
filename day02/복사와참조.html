@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+    <input type="text" name="" id="id" value="홍길동">
+</body>
+<script>
+    //call by value <==> call by reference
+    var ggg = "aaaa bbb cc d";
+    //var bbb = new String("abc");
+    //원시타입에 . 을 붙이는 순간 wrapper 객체로 자동으로 바뀜
+    alert(ggg.substring(0,5));
+
+    var num = "272";
+    alert(Number.MAX_SAFE_INTEGER);
+
+    //var test = document.querySelector("#id").value;
+    var test = document.querySelector("#id");
+    //alert(typeof(test));
+    test.value = "이길동";
+
+    //원시타입(primitive)은 복사  => string, number, boolean
+    //객체(object)는 참조(reference)로 동작 => 배열, JSON, 함수
+    //"use strict" : 엄격 모드 적용 
+
+    /* var aaa = "홍길동";
+    var bbb = aaa;
+    bbb = "이길동";
+    //alert(aaa); //홍길동 => 원시타입은 복사
+
+    var black = {
+        name: "제니"
+    };
+    var pink = black; //객체는 주소를 참조한다
+    pink.name = "로제";
+
+    alert(black.name);  //로제 => black과 pink는 같은 곳을 가리키는 포인터
+    */
+</script>

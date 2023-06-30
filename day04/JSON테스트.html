@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<body>
+    <div id="disp"></div>
+</body>
+<script>
+    /* const blackPink = [
+        {name:"로제", age:26, song:"bb"},
+        {name:"제니", age:24, song:"aa"},
+        {name:"리사", age:25, song:"gg"},
+        {name:"지수", age:23, song:"ff"},
+        {name:"길동", age:28, song:"ee"}
+    ]
+
+    blackPink.sort((a,b) => {
+        //return a.age - b.age;
+
+        if(a.name > b.name) return 1;
+        if(a.name == b.name) return 0;
+        if(a.name < b.name) return -1;
+    })
+
+    console.log(blackPink); */
+
+    const myDisp = document.querySelector("#disp");
+
+    const position = {
+        "level1": "회장님",
+        "level2": "사장님",
+        "level3": "부장님",
+        "level4": "이장님"
+    };
+
+    const aaa = [
+        {name:"홍길동", age:10, pos:"level1"},
+        {name:"이길동", age:20, pos:"level4"},
+        {name:"박길동", age:30, pos:"level3"},
+        {name:"김길동", age:40, pos:"level4"},
+        {name:"신길동", age:50, pos:"level2"},
+    ]; 
+
+    //보통은 . 을 찍는다(성능이 더 좋아서 많이 사용)
+
+    var tblStr = "<table border='2'>";
+        tblStr += 
+            `<tr>
+                <th>순번</th><th>이름</th><th>나이</th><th>직책</th>
+            </tr>`;
+    
+    for(let i = 0; i < aaa.length; i++) {
+        tblStr += `<tr>`;
+        tblStr += `<td>${i+1}</td>`;
+        tblStr += `<td>${aaa[i].name}</td>`;
+        tblStr += `<td>${aaa[i].age}</td>`;
+        tblStr += `<td>${position[aaa[i].pos]}</td>`;
+        tblStr += "</tr>";
+    }
+
+    tblStr += "</table>";
+
+    myDisp.innerHTML = tblStr;
+</script>

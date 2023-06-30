@@ -1,0 +1,7 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script>
+    let data = JSON.parse(localStorage.getItem("stars"));
+    data[4].arr[1] = "가가가";
+    localStorage.setItem("stars", JSON.stringify(data));
+</script>

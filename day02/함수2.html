@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script>
+    //리턴 아무거나 다 가능
+    const cal = function(p) {
+        if(p == "+") {
+            return function(a, b) {
+                return a+b;
+            }
+        }
+
+        if(p == "-") {
+            return function(a, b) {
+                return a-b;
+            }
+        }
+
+        if(p == "*") {
+            return function(a, b) {
+                return a*b;
+            }
+        }
+    }
+
+    alert(cal("+")(3, 7));
+    alert(cal("*")(3, 7));
+
+    //3+7-4
+    alert(cal("-")(cal("+")(3, 7), 4));
+</script>

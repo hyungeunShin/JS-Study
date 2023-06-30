@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script src="./jsp.js"></script>
+<script>
+    let title = request.getParameter("title");
+    let writer = request.getParameter("writer");
+    let content = request.getParameter("content");
+    let skills = request.getParameterValues("skill");
+
+    let data = {
+        num: 0,
+        title: title,
+        writer: writer,
+        content: content,
+        skills: skills,
+        date: (new Date()).toLocaleDateString()
+    }
+
+    let dataArr = [];
+    if(localStorage.getItem("uglyGesi")) {
+        dataArr = JSON.parse(localStorage.getItem("uglyGesi"));
+        data.num = dataArr[dataArr.length-1].num + 1;
+    }
+    dataArr.push(data);
+
+    localStorage.setItem("uglyGesi", JSON.stringify(dataArr));
+
+    alert("등록됨");
+
+    //location.href     //캐시를 쓸수도 안쓸수도
+    location.replace("list.html");  //캐시 안씀
+</script>

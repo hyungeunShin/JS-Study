@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!-- onclick은 디버깅 할 때만 권장하고 id로 접근 후 이벤트를 주는 게 바람직하다. -->
+    <button id="btn1" onclick="fclick1(this)">이벤트 등록법1</button>
+    <!-- <button id="btn2">이벤트 등록법2</button> -->
+    <button id="btn2"><span>이벤트 등록법2</span></button>
+    <button id="btn3">이벤트 등록법3</button>
+
+    <script>
+        const myBtn2 = document.querySelector('#btn2');
+        const myBtn3 = document.querySelector('#btn3');
+        
+        myBtn3.addEventListener('click', function(){
+            alert("난 3번");
+        })
+        function fclick3(){
+            alert("나도 3번");
+        }
+        myBtn3.addEventListener('click', fclick3);
+
+        // 이벤트 등록법 2번 덮어쓰게 된다. 나중것만 실행된다.
+        myBtn2.onclick = function(){
+            alert("버튼2 클릭함!")
+        }
+        function fclick2(){
+            // target vs currentTarget을 꼭 구분해서 사용하자 -> 사고난다.
+            console.log(event.target);
+            console.log(event.currentTarget);   // 무조건 이벤트 걸어주는 애다.
+            alert("?");
+        }
+        myBtn2.onclick = fclick2;
+
+
+        function fclick1(pThis){
+            alert("기본!" + pThis.innerHTML);
+            alert("기본!" + pThis.id);
+        }
+    </script>
+</body>
+</html>

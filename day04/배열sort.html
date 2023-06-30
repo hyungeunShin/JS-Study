@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script>
+    //배열 클래스
+    function MyArray() {
+        this.length = 0;
+    }
+
+    //push 메소드
+    MyArray.prototype.push = function(pElem) {
+        this[this.length] = pElem;
+        this.length++;
+        return this;    //메소드 체이닝
+    }
+
+    //sort 메소드
+    MyArray.prototype.sort = function(pCallback) {
+        for(j = 0; j < this.length; j++) {
+            for(let i = j+1; i < this.length; i++) {
+                if(pCallback(this[j], this[i]) > 0) {
+                    let temp = this[j];
+                    this[j] = this[i];
+                    this[i] = temp;
+                }
+            }    
+        }
+    }
+
+    let testArr = new MyArray();
+    testArr.push(2).push(6).push(3).push(1).push(4);
+    testArr.sort(function(a,b) {
+        //return a - b;
+        return b - a;
+    });
+    console.log(testArr);
+
+    // sort를 알려면 정렬 -> 최대값, 최소값
+    //const testArr = [3,6,1,2,9,7,3,2];
+    //const testArr = [1,4,6,7,2,3];
+    //const testArr = ["이씨", "김씨", "박씨", "홍씨", "신씨"];
+    //문자열은 +를 제외한 사칙연산이 불가능
+    /* alert("홍길동" + 1);
+    alert("홍길동" - 1);
+    alert("홍길동" * 1);
+    alert("홍길동" / 1); */
+    
+    /* alert("홍길동" > "이길동"); //크기비교는 내부적으로 아스키코드, 유니코드값으로 비교됨
+    alert("흥".charCodeAt(0));
+    alert("A".charCodeAt(0));
+    alert("a".charCodeAt(0));
+    alert("A" > "a");
+
+    alert(testArr.sort());  //디폴트로 오름차순
+    alert(testArr.sort(function(a,b) {
+        //return b-a;   //문자열 비교 불가능
+
+        if(b > a) return 1;
+        if(b == a) return 0;
+        if(b < a) return -1;
+    })); */
+
+    //let max = testArr[0];
+    /* for(let i = 1; i < testArr.length; i++) {
+        if(testArr[0] < testArr[i]) {
+            let temp = testArr[0];
+            testArr[0] = testArr[i];
+            testArr[i] = temp;
+            alert(testArr);
+        }
+    }
+
+    for(let i = 2; i < testArr.length; i++) {
+        if(testArr[1] < testArr[i]) {
+            let temp = testArr[1];
+            testArr[1] = testArr[i];
+            testArr[i] = temp;
+            alert(testArr);
+        }
+    } */
+    //alert("max : " + max);
+    //alert("두번째 자리까지 정렬:  ", testArr);
+
+    //버블정렬
+    /* for(j = 0; j < testArr.length; j++) {
+        for(let i = j+1; i < testArr.length; i++) {
+            if(testArr[j] < testArr[i]) {
+                let temp = testArr[j];
+                testArr[j] = testArr[i];
+                testArr[i] = temp;
+            }
+        }    
+    }
+    alert(testArr); */
+</script>

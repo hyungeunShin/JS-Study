@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script>
+    //CORS 플러그인이 필요!!
+    const contents = [];
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("get", "https://www.ddit.or.kr/review?page=1", false);  //일단 동기식으로
+    xhr.onreadystatechange = function() {
+        if(xhr.readyState == 4 && xhr.status == 200) {
+            let schRegExp = new RegExp('<p class="review_con">.*</p>','g');
+            let schRslt = xhr.responseText.match(schRegExp);
+            //console.log(schRslt);
+            
+            for(let i=0; i<schRslt.length; i++){
+                contents.push(schRslt[i].replace('<p class="review_con">',"").replace("</p>",""));
+            }
+            console.log(contents);
+        }
+    }
+    xhr.send();
+
+</script>

@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <button onclick="fWrite()">값 쓰기</button>
+    <div style="width:600px;height:600px">
+        <canvas id="myChart"></canvas>
+    </div>
+    <script>
+        /* function fWrite(){
+            // 데이터 셋을 한개 더 넣어보자
+            myDataset = {
+                type:"line",
+                label: '# dd',
+                data: [20, 30, 40, 50, 60, 70],
+                borderWidth: 1
+            }
+            myChart.data.datasets.push(myDataset);
+
+            // alert("fWrite 호출");
+            // myChart.data.datasets[0].data[2] = 300; // 값은 잘 바꼈는데 rendering이 안됨 -> update 필수
+            myChart.update();           // 업데이트 필수! 그래야 값이 잘 바뀜 -> 메서드 중에서 가장 중요
+        } */
+
+        function fWrite(){
+            let data1 = [];
+            let data2 = [];
+            for(let i=1; i<=6; i++){
+                data1.push(Math.floor(Math.random() * 60) + 40);
+                data2.push(Math.floor(Math.random() * 60) + 40);
+            }
+
+            myChart.data.datasets[0].data = data1;
+            myChart.data.datasets[1].data = data2
+
+            myChart.update();
+
+            setTimeout(fWrite, 400);
+        }
+
+        const ctx = document.querySelector('#myChart');
+
+        var myChart = new Chart(ctx, {
+            type: 'bar',    // bar, line, rader, doughnut, pie
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [
+                    {
+                        label: '# 2022',
+                        data: [12, 19, 3, 5, 2, 3],
+                        borderWidth: 1
+                    },
+                    {
+                        type: "line",
+                        label: '# 2023',
+                        data: [12, 19, 3, 5, 2, 3],
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        // alert(myChart.data.datasets[0].data[2]);    //
+    </script>  
+</body>
+</html>

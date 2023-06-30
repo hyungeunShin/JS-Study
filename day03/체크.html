@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+    <div id="disp"></div>
+</body>
+<script>
+    /* Uncaught TypeError: Cannot read properties of null (reading 'appendChild') */
+    let myDisp = document.querySelector("#disp");
+    myDisp.appendChild(document.createElement("h1"));
+
+    const debug = true; //디버깅용 로그 제어
+
+    //console.log(객체일때 참조 방식)
+    let testObj = {
+        name: "로제",
+        age: 26
+    }
+
+    if(debug) {
+        //객체를 복사해서 찍어볼것
+        let testCopy = structuredClone(testObj);
+        console.log(testCopy);
+    }
+
+    testObj.name = "제니";
+    testObj.age = 27;
+    if(debug) {
+        console.log(testObj);
+    }
+</script>

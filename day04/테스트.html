@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script>
+    // callback 조금 연습하는걸로 (적어도 3일정도...)
+
+    // var dong = {}; // 네임스페이스용 빈 객체
+    // dong.print = function(){
+    //     alert("나 길동");
+    // }
+
+
+    // 자바의 ArrayList를 자스로 맹글어 보아용, 배열과 거의 같아용
+    function ArrayList(){
+        this.length = 0;
+        return this;
+    }
+
+    //add
+    ArrayList.prototype.add = function(pElem){
+        this[this.length] = pElem;
+        this.length++;  // 초기값이 없으면 NaN (Not a Number)
+        return this;
+    }
+
+    //get
+    ArrayList.prototype.get = function(pIndex){
+        return this[pIndex];
+    }
+
+    //set
+    ArrayList.prototype.set = function(pIndex,pValue){
+        this[pIndex] = pValue;
+        return this;
+    }
+
+    //remove
+    ArrayList.prototype.remove = function(pIndex){
+        for(var i=0;i<this.length;i++){
+            this[i] = this[i+1];    // pIndex 부터 뒤에 값 앞으로 땡기기
+        }
+        delete this[this.length-1];
+
+        this.length--;
+        return this;
+    }
+
+    //clear
+    ArrayList.prototype.clear = function(){
+        for(var i=0;i<this.length;i++){
+            delete this[i];
+        }
+        return this;
+    }
+
+    //size
+    ArrayList.prototype.size = function(){
+        return this.length;
+    }
+
+    var testArrayList = new ArrayList();
+    testArrayList.add("로제").add("제니").add("리사").add("지수");
+    console.log("체크1: ",testArrayList);
+
+    console.log("체크2: ",testArrayList.get(2));
+
+    testArrayList.set(1, "홍길동");
+    console.log("체크3: ",testArrayList);
+
+    testArrayList.remove(1);
+    console.log("체크4: ",testArrayList);
+
+    console.log("체크5 :",testArrayList.size());
+
+    testArrayList.clear();
+    console.log("체크6 :",testArrayList);
+</script>

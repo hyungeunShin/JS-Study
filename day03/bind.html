@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script>
+    // function print(pMsg){
+    //     document.write(pMsg);
+    // }
+
+    var print = document.write.bind(document);
+
+    print("<h1>홍길동 만만세</h1>");
+    // document.write("<h1>홍길동 만만세</h1>");
+</script>

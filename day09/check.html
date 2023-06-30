@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+    // Allow CORS 플러그인이 있어야한다 / 서버가 없으면 플러그인 필수(ajax cross origin 문제)
+    var contents = [];  // 내용을 담을 빈 배열
+
+    function getContents(pPage){
+        console.time("타임체크");
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', `https://www.ddit.or.kr/review?page=${pPage}`, false);  // 일단 동ㄱ식
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4 && xhr.status == 200){
+                let schRegExp = new RegExp('<p class="review_con">.*</p>','g');
+                let schRslt = xhr.responseText.match(schRegExp);
+                // console.log("체크", schRslt)
+                for(let i=0; i<schRslt.length; i++){
+                    contents.push(schRslt[i].replace('<p class="review_con">',"").replace("</p>",""));
+                }
+                // console.log("체크", schRslt)
+                console.timeEnd("타임체크");
+            }
+        }
+
+        xhr.send();
+    }
+
+    (function(){
+        console.time("반복시간");
+        for(let i=1; i<=12; i++){
+            getContents(i);
+        }
+        console.timeEnd("반복시간");
+    })();
+</script>

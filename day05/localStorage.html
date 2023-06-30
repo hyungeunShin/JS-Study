@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script>
+    //localStorage 요즘은 쿠키 대신 많이 사용
+    /* localStorage.setItem("key1", "1111");
+    localStorage.setItem("key1", "2222");   //키이름이 같으면 덮어쓴다
+    //alert(localStorage.getItem("key1"));
+
+    localStorage.setItem("key2", "123123123");
+    //alert(localStorage.length);
+
+    localStorage.removeItem("key1");
+    //alert(localStorage.length);
+
+    alert(localStorage.key(0));    //키 값 읽어오기
+    localStorage.clear(); */
+
+    /* localStorage.aaa = "AAA";   //setItem 메소드와 같은 의미
+    alert(localStorage.aaa);    //getItem
+    delete localStorage.aaa;    //removeItem */
+
+
+
+    /* //중요 : localStorage는 문자열만 저장가능 ==> 객체를 그대로 저장하지 못함
+    let test = {name: "홍길동", age: 12};
+    localStorage.setItem("hh", test);
+    localStorage.setItem("hhh", JSON.stringify(test));
+
+    //let readData = localStorage.getItem("hhh");
+    let readData = JSON.parse(localStorage.getItem("hhh"));
+    alert(typeof(readData));
+    alert(readData.name); */
+
+
+    localStorage.clear();
+
+
+    /* //배열, 자동실행되는 toString에 속으면 안됨
+    let arr = [1,2,3,4,5];
+    localStorage.setItem("arr", JSON.stringify(arr));
+
+    let data = JSON.parse(localStorage.getItem("arr"));
+    console.log(data[0]); */
+
+
+    //실제 많이 사용되는 방식(객체지향 DB 처럼 사용 -> MongoDB와 유사한 방식)
+    let dataArr = [];
+
+    for(let i = 1; i <= 10; i++) {
+        let myStar = {};
+        myStar.name = "스타 " + i;
+        myStar.age = Math.floor(Math.random()*20) + 20;
+
+        if(i == 5) {
+            myStar.arr = ["가", "나", "다"];
+        }
+        dataArr.push(myStar);
+    }
+
+    localStorage.setItem("stars", JSON.stringify(dataArr));
+</script>

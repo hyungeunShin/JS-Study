@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+    table {
+        text-align: center;
+    }
+
+    #modal {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: none;
+    }
+
+    #mCont {
+        width: 60%;
+        height: 70%;
+        margin: 20px auto;
+        background-color: orange;
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+    <div id="modal">
+        <div id="mCont">
+            <form action="write_action.html">
+                <h1>상세 모달</h1>
+                <input type="hidden" name="num" value="">
+                제목 <input type="text" name="title" value=""><br>
+                작성자 <input type="text" name="writer" disabled><br>
+                내용 <br>
+                <textarea name="content" cols="30" rows="10"></textarea><br>
+                관련언어<br>
+                JS<input type="checkbox" name="skill" value="js" onclick="f3ck(this)">
+                JAVA<input type="checkbox" name="skill" value="java" onclick="f3ck(this)">
+                ORACLE<input type="checkbox" name="skill" value="oracle" onclick="f3ck(this)">
+                HTML<input type="checkbox" name="skill" value="html" onclick="f3ck(this)">
+                CSS<input type="checkbox" name="skill" value="css" onclick="f3ck(this)">
+                <br>
+                <button type="submit" onclick="fsubmit('mod')">수정</button>&nbsp;&nbsp;<button type="submit" onclick="fsubmit('del')">삭제</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="wrapper">
+        <h1>게시판</h1>
+        <div id="list"></div>
+    </div>
+    <br>
+    <a href="write.html">글 작성하기</a>
+</body>
+<script src="./jsp.js"></script>
+<script>
+    /*
+        페이지당 글 출력 개수
+        전체 글 수
+        페이지수
+        페이지별로 시작인덱스, 끝 인덱스
+    */
+    let dataArr = JSON.parse(localStorage.getItem("uglyGesi"));
+    let page = request.getParameter("page");
+    if(!page) { 
+        page = 1;
+    }
+    const cntPerPage = 10;
+    let totalCnt = dataArr.length;
+    let pageCnt = Math.ceil(totalCnt / cntPerPage);
+    let startIndex = (page - 1) * cntPerPage;
+    //let endIndex = startIndex + (cntPerPage - 1);
+    let endIndex = startIndex + cntPerPage; //반복문에 '<' 쓰냐 '<=' 쓰느냐에 따라 -1 여부 결정
+    
+    if(endIndex > totalCnt) {
+        endIndex = totalCnt;
+    }
+
+
+
+    window.addEventListener("DOMContentLoaded", function() {
+        fList();
+    }); //태그 해석만 끝나면 발생
+    //window.addEventListener("load", fList);           //태그 해석 + 이미지 로딩완료에 발생
+
+    const gList = document.querySelector("#list");
+    const myModal = document.querySelector("#modal");
+    const myForm = document.forms[0];
+
+    function fList() {
+        let str =  `<table border=1>`;
+        str += `<tr><th>번호</th><th>제목</th><th>작성자</th><th>작성일</th></tr>`;
+        
+        for(let i = startIndex; i < endIndex; i++) {
+            str += "<tr>";
+            str += `<td>${dataArr[i].num}</td>`;
+            str += `<td><a href="#" onclick="fread(${dataArr[i].num})">${dataArr[i].title}</a></td>`;
+            str += `<td>${dataArr[i].writer}</td>`;
+            str += `<td>${dataArr[i].date}</td>`;
+            str += "</tr>";
+        }
+
+        str += "</table>";
+
+        //페이지 번호 출력하는 부분
+        let pageStr = "";
+        for(let i = 1; i <= pageCnt; i++) {
+            if(page == i) {
+                pageStr += `<a href="list.html?page=${i}"><span style="color: red; font-size: 1.5rem;">${i}</span></a>&nbsp;&nbsp;&nbsp;`;
+                continue;    
+            }
+            pageStr += `<a href="list.html?page=${i}">${i}</a>&nbsp;&nbsp;&nbsp;`;
+        }
+
+        str += pageStr;
+
+        gList.innerHTML = str;
+    }
+
+    function fread(pNum) {
+        event.preventDefault();
+        myModal.style.display = "block";
+
+        document.querySelector("[name=num]").value = pNum;
+
+        for(let i = 0; i < dataArr.length; i++) {
+            if(dataArr[i].num == pNum) {
+                document.querySelector("[name=title]").value = dataArr[i].title;
+                document.querySelector("[name=writer]").value = dataArr[i].writer;
+                document.querySelector("[name=content]").value = dataArr[i].content;
+                
+                let chArr = dataArr[i].skills;
+
+                for(let j = 0; j < chArr.length; j++) {
+                    document.querySelector(`[value=${chArr[j]}]`).checked = true;
+                }
+
+                break;
+            }
+        }
+    }
+
+    function fsubmit(pAct) {
+        event.preventDefault();
+
+        if(pAct == "mod") {
+            myForm.action = "modify_action.html";
+        }
+
+        if(pAct == "del") {
+            myForm.action = "delete_action.html";
+        }
+
+        myForm.submit();
+    }
+</script>
+</html>

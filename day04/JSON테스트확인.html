@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<body>
+    <table border="1">
+        <tbody>
+            <th>이름</th>
+            <th onclick="ftest()">나이</th>
+            <th>직책</th>
+        </tbody>
+        <tr>
+            <td>홍길동</td>
+            <td>10</td>
+            <td>level1</td>
+        </tr>
+        <tr>
+            <td>이길동</td>
+            <td>30</td>
+            <td>level4</td>
+        </tr>
+        <tr>
+            <td>박길동</td>
+            <td>20</td>
+            <td>level6</td>
+        </tr>
+    </table>
+</body>
+<script>
+    function toArray(pArg) {
+        var arr = [];
+        for(let i = 1; i < pArg.length; i++) {
+            arr.push(pArg[i]);
+        }
+        return arr;
+    } 
+
+    //Array.from (유사배열을 자스배열로 바꿔준다, 원리는 위 toArray 함수)
+    //const trs = Array.from(document.querySelectorAll("tr"));
+
+    const trs = toArray(document.querySelectorAll("tr"));
+    const tbody = document.querySelector("tbody");
+
+    
+    tbody.appendChild(trs[1]);
+    //console.log(arr.sort());
+
+    console.log(trs);
+
+    function ftest() {
+        trs.sort(function(a,b) {
+            return a.children[1].innerHTML - b.children[1].innerHTML;
+        });
+
+        for(let i = 0; i < trs.length; i++) {
+            //이미 있는걸 appendChild 하게 되면 자리만 옮긴다
+            tbody.appendChild(trs[i]);
+        }
+    }
+</script>

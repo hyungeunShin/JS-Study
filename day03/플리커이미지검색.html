@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset='utf-8'>
+    <title>Page Title</title>
+</head>
+<body>
+    <input type="text" id="mSch"> <input type="button" id="mBtn" value="이미지검색"><br>
+    <div id="myDisp"></div>
+</body>
+<script>
+    const mSch = document.querySelector('#mSch');
+    const mBtn = document.querySelector('#mBtn');
+    const myDisp = document.querySelector('#myDisp');
+
+    const preURL = "https://www.flickr.com/services/feeds/photos_public.gne?tags=";
+    const postURL = "&format=json";
+
+    mBtn.addEventListener('click',function(){
+        let schWord = mSch.value;
+        let realURL = `${preURL}${schWord}${postURL}`;
+        console.log("체크 : ", realURL);    // 디버깅용
+
+        let myScript = document.createElement("script");
+        myScript.src = realURL;    
+        document.head.appendChild(myScript);
+    })
+
+    // 호출하는 함수를 미리 만들어 둠.
+    function jsonFlickrFeed(pArg){
+        console.log("체크 :", pArg);
+        myDisp.innerHTML = "";  // $("#myDisp").empty() => $('#myDisp').html("")
+        let items = pArg.items;
+        for(let i=0; i<items.length; i++){
+            let imgUrl = items[i].media.m;
+            let imgTag = document.createElement('img');
+            imgTag.width = 150;
+            imgTag.height = 150;
+            imgTag.src = imgUrl
+            myDisp.appendChild(imgTag); // 실제 document에 추가
+        }
+    }
+</script>    
+<script src="https://www.flickr.com/services/feeds/photos_public.gne?tags=dog&format=json"></script>
+</html>

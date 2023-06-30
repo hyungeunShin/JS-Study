@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script src="./jsp.js"></script>
+<script>
+    let num = request.getParameter("num");
+    let title = request.getParameter("title");
+    let content = request.getParameter("content");
+    let skills = request.getParameterValues("skill");
+    let date = (new Date()).toLocaleDateString();
+
+    console.log(num);
+    console.log(title);
+    console.log(content);
+    console.log(skills);
+
+    let dataArr = JSON.parse(localStorage.getItem("uglyGesi"));
+
+    console.log(dataArr);
+
+    for(let i = 0; i < dataArr.length; i++) {
+        if(dataArr[i].num == num) {
+            dataArr[i].title = title;
+            dataArr[i].content = content;
+            dataArr[i].skills = skills;
+            dataArr[i].date = date;
+
+            break;
+        }
+    }
+
+    //다시 저장
+    localStorage.setItem("uglyGesi", JSON.stringify(dataArr));
+
+    alert("수정됨");
+    location.replace("list.html");
+</script>

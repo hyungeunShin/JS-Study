@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+    
+</body>
+<script>
+    for(let i = 0; i <= 20; i++) {
+        document.write("<h1>무한스크롤</h1>");
+    }
+
+    //크롬에서는 안먹음
+    //window.scrollTo(x좌표, y좌표);
+    setTimeout(function() {
+        window.scrollTo(0, 0);
+    }, 50);
+
+    //스크롤 이벤트
+    window.onscroll = function() {
+        let scrollTop = document.documentElement.scrollTop;
+        let clientHeight = document.documentElement.clientHeight;
+        let scrollHeight = document.documentElement.scrollHeight;
+
+        //스크롤바를 끝까지 내리면 브라우저가 좋아져서 소숫점 때문에 미세한 오차 발생
+        //스크롤바를 끝까지 내렸다면 scroll top + client height = scroll height가 되어야 함
+        //실제는 약간의 튜닝값을 넣어서 끝까지 내리기 이전에 필요한 처리를 함
+
+        const tunningVal = 50; //50px이전에 발생 시키려고 한다
+        if((scrollTop + clientHeight) >= (scrollHeight - tunningVal)) {
+            //실제로 여기에 오는건 대부분 AJAX 데이터
+            for(let i = 1; i <= 8; i++) {
+                var h1 = document.createElement("h1");
+                h1.innerHTML = "무한스크롤" + i;
+                document.body.appendChild(h1);
+            }
+        }
+    }
+</script>
+</html>

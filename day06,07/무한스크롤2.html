@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+#disp {
+    border: 1px solid blue;
+    height: 400px;
+    overflow: auto;
+}
+</style>
+</head>
+<body>
+    <div>
+        <h1>DOM(Document Object Model)에 무한스크롤</h1>
+    </div>
+
+    <div id="disp">
+        <script>
+            let tblStr = "<table border=1>";
+            tblStr += "<tbody id='tbody'>";
+            tblStr += "<tr><th>이름</th><th>나이</th></tr>";
+
+            for(let i = 1; i <= 30; i++) {
+                tblStr += "<tr>";
+                tblStr += "<td>홍길동</td><td>30</td>";
+                tblStr += "</tr>";
+            }
+            tblStr += "</tbody></table>";
+            document.write(tblStr);
+        </script>
+    </div>
+</body>
+<script>
+    const myDisp = document.querySelector("#disp");
+    const myBody = document.querySelector("#tbody");
+
+    function fchk() {
+        var scrollTop = myDisp.scrollTop;
+        var clientHeight = myDisp.clientHeight;
+        var scrollHeight = myDisp.scrollHeight;
+
+        var tunningVal = 50;
+        if((scrollTop + clientHeight) >= (scrollHeight - tunningVal)) {
+            for(let i = 1; i <= 10; i++) {
+                let tr = document.createElement("tr");
+                tr.innerHTML = `<td>이길동</td><td>40</td>`;
+                myBody.appendChild(tr);
+            }
+        }
+    }
+
+    myDisp.addEventListener("scroll", fchk);
+</script>
+</html>

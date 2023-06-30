@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Document</title>
+<style>
+#myModal {
+    position: fixed;    /* 위치 고정 */
+    left: 0px;
+    top: 0px;
+    width: 100vw;   /* 사이즈 고정 */
+    height: 100vh;
+    background-color: rgba(12,12,12,0.5);
+    z-index: 100;
+    display: none;
+}
+
+#content {
+    width: 60%;
+    height: 70%;
+    margin: 20px auto;  /* 수평 중앙정렬 */
+    background-color: aliceblue;
+}
+
+#menu {
+    text-align: right;
+}
+button {
+    font-size: 2em;     /* 기본 2배 */
+}
+</style>
+</head>
+<body>
+
+    <div id="myModal">
+        <div id="content">
+            <div id="menu"><button onclick="modalClose()">X</button></div>
+            <div><h1>모달모달모달</h1></div>
+        </div>
+    </div>
+
+    <div id="wrapper">
+        <button onclick="modalOpen()">모달</button>
+    </div>
+
+
+    <!-- position, z-index, display, overflow, transform -->
+</body>
+<script>
+    const myModal = document.querySelector("#myModal");
+    function modalOpen() {
+        myModal.style.display = "block";    //눈에 보이게
+    }
+    function modalClose() {
+        myModal.style.display = "none";    //눈에 안보이게
+    }
+</script>
+</html>

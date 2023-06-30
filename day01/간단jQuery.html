@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<meta charset='utf-8'>
+<body>
+    <div class="aa ff">aa</div>
+    <div class="aa">bb</div>
+    <div class="aa ff">cc</div>
+    <div class="aa">dd</div>
+    <div class="aa">ee</div>
+</body>
+<script>
+    /*
+    //전역변수 선언은 window 객체에 속성을 추가하는 것과 같다.
+    var aaa = "전역변수";
+    alert(window.aaa);
+
+    window.aaa = "전역변수";
+    alert(aaa);
+
+    window.aaa = function() {alert("전역변수")};
+    aaa(); //함수를 선언하는 것은 window객체의 메소드를 추가하는 것과 같다
+    */
+
+    //즉각 실행 함수
+    //핵심 코드를 보호, 메모리 절약을 위해 사용
+    //+,-,!를 대신 사용해도 가능 => !,()를 사용 권장
+    /* !function(arg) {
+        alert(arg + "는 시작하자마자 실행됨");
+    }("이 함수"); */
+    /* (function(arg) {
+        alert(arg + "는 시작하자마자 실행됨");
+    })("이 함수"); */
+    //var $;  ==> window.$
+    (function(arg) {
+        var $ = function(pSel) {
+            return new MyDom(pSel);
+        }
+
+        var MyDom = function(pSel) {
+            var elems = document.querySelectorAll(pSel);
+            this.length = elems.length;    
+            for(let i = 0; i < elems.length; i++) {
+                this[i] = elems[i];
+            }
+
+            return this;
+        }
+        //MyDom.prototype.method = function(){};
+        window.$ = $; //지역변수 $와 전역변수 $는 같은 곳을 가리킨다
+        $.fn = MyDom.prototype; //$.fn과 MyDom.prototype은 같은 곳을 가리킨다
+    })();
+    
+
+    /* //factory 패턴
+    function $(pSel) {
+        return new MyDom(pSel);
+    }
+
+    //function을 클래스로
+    function MyDom(pSel) {
+        var elems = document.querySelectorAll(pSel);
+        //jquery는 선택된 Dom 요소를 자신의 속성으로 옮겨 담음
+        //=> 자신의 메소드에서 편하게 접근하기 위해서
+        this.length = elems.length;             //자신의 속성 legnth 추가
+        for(let i = 0; i < elems.length; i++) { //옮겨 담는 작업
+            this[i] = elems[i];
+        }
+
+        return this;    //클래스의 의미로 쓰면 return this; 가 생략되어 있다.
+    } */
+    
+    //함수를 클래스의 의미로
+    //var divs = new myDom(".aa");
+    var divs = $(".aa.ff");
+
+    console.log(divs);
+</script>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script>
+    var test = {
+        aaa : "메롱",
+        bbb : "안메롱",
+        ["1"] : "요것"
+    }
+
+    // delete test.bbb;
+    // delete test.1 // 요건 안됨
+    delete test[1]; // delete test["1"]과 같음
+    console.log(test);
+</script>

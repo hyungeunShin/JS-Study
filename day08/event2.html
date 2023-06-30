@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #grand{
+            width: 300px;
+            height: 300px;
+            border: 3px solid black;
+        }
+
+        #mother{
+            width: 200px;
+            height: 200px;
+            border: 3px solid pink;
+            position: relative;
+            left: 50px;
+        }
+        
+        #me{
+            width: 100px;
+            height: 100px;
+            border: 3px solid lightblue;
+            position: relative;
+            left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="grand" onclick="fgrand()">할머니
+        <div id="mother" onclick="fmom()">
+            엄마
+            <div id="me" onclick="fme()">나</div>
+        </div>
+    </div>
+
+    <script>
+        // 이벤트 버블링 -> 프라이버시 없음
+        function fgrand(){
+            alert("할머니");
+        }
+        function fmom(){
+            event.stopPropagation();  // 중요! -> 이벤트 캡쳐링, 해당 이벤트만 뽑아서 호출한다.
+            alert("엄마");
+        }
+        function fme(){
+            /* event.preventDefault();
+            event.target
+            event.currentTarget */
+            event.stopPropagation();  // 중요!
+            alert("나");
+        }
+    </script>
+</body>
+</html>

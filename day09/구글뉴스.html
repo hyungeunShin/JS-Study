@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/x2js/1.2.0/xml2json.min.js"></script>
+</head>
+<body>
+    <input type="text" id="schWord" value="" onkeydown="fEnter()">
+    <button onclick="fgoogle()">구글뉴스 xml이라 별로...</button>
+    <div id="disp"></div>
+
+    
+    <script>
+        function fEnter(){
+            alert(event.key);
+        }
+
+        const mySchWord = document.querySelector('#schWord');
+        const myDisp = document.querySelector('#disp');
+
+        console.log("dd", mySchWord.value);
+        
+        var x2js = new X2JS();
+        
+        // 구글이 막아놓아서 무료로 우회해주는 우회서비스 이용 -> 무료라 속도가 빠르지는 않음(보통 이런 걸 Proxy라 부른다)
+        function fgoogle(){
+            let googleUrl = `https://news.google.com/rss/search?q=${mySchWord.value}&hl=ko&gl=KR&ceid=KR:ko`;
+            let url = `https://api.allorigins.win/get?url=${encodeURIComponent(googleUrl)}`;
+
+            myDisp.innerHTML = "";
+
+            var xhr = new XMLHttpRequest(); // 심부름꾼 만들기
+            xhr.open("get", url, true);
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState == 4 && xhr.status == 200){
+                    // console.log(xhr.responseText);
+                    let xmlStr =JSON.parse(xhr.responseText).contents;
+                    var jsonObj = x2js.xml_str2json( xmlStr );
+                    console.log("체크", jsonObj.rss.channel.item);
+
+                    var news = jsonObj.rss.channel.item;
+                    var tblStr = "<table border=1>";
+                    tblStr += "<tr><th>타이틀</th><th>링크</th><th>발행일</th></tr>";
+                    for(let i=0; i<news.length; i++){
+                        tblStr += "<tr>";
+                        tblStr += `<td>${news[i].title}</td>`;
+                        tblStr += `<td><a href="${news[i].link}">보자</a></td>`;
+                        tblStr += `<td>${news[i].pubDate}</td>`;
+                        tblStr += "</tr>";
+                    }
+                    tblStr += "</table>";
+
+                    myDisp.innerHTML = tblStr;
+                }
+            }
+            xhr.send();
+        }
+    </script>
+</body>
+</html>
