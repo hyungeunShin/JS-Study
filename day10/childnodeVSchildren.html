@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+    <div id="disp">
+        <h1>토요일</h1>
+    </div>    
+</body>
+<script>
+    //childNodes는 안쓰는게 유리 ==> children 권장
+    //children은 무조건 element 타입만을 가져온다
+    const myDisp = document.querySelector("#disp");
+    console.log(myDisp.childNodes[0]);
+    console.log(myDisp.children[0]);
+</script>
+</html>
