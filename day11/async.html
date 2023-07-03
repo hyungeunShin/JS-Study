@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script>
+    const axios = {};       
+
+    axios.get = function(pURL) {            
+        return new Promise((res, rej) => {
+            var xhr = new XMLHttpRequest();
+            xhr.open("get", pURL, true);
+            xhr.onreadystatechange = function() {
+                if(xhr.readyState == 4 && xhr.status == 200) {
+                    res(JSON.parse(xhr.responseText));
+                }
+            };
+            xhr.onerror = function() {
+                rej(new Error("에러 발생"));
+            };
+            xhr.send();
+        });
+    };
+
+    async function fget() {
+        var res = await axios.get("dummyData.json");
+        console.log("체크", res);
+    }
+
+    fget();
+</script>

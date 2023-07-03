@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<!--
+    ES6 이상에서 추가된 것들
+    백틱, spread operator ..., 구조 분해(Destructuring), arrow function(화살표 함수), Promise, async await
+-->
+<script>
+    /*
+    //spread operator
+    var arr1 = [1,2,3,4];
+    // var arr2 = [5,...arr1,9];
+    // alert(arr2);
+
+    let arr2 = [];
+    let arr3;
+    for(let i = 10; i <= 20; i++) {
+        arr2 = [...arr2, i];
+        arr3 = [...arr1, ...arr2];
+    }
+    console.log(arr2);
+    console.log(arr3);
+    */
+
+    function fCk(who, ...pArgs) {
+        //console.log(who);
+        for(let i = 0; i < pArgs.length; i++) {
+            console.log(pArgs[i]);
+        }
+    }
+
+    fCk("제니", "지수", "로제", "리사");
+</script>

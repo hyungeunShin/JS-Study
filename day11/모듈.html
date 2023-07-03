@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script type="module">
+    import hi from "./firstModule.js";
+
+    hi();
+
+    let gd = "홍길동";
+
+    //모듈끼리만 가능
+    window.gd2 = "이길동";
+    /*
+        module에는 2가지가 존재 commonJS와 esm
+        commonJS는 자바스크립트 커뮤니티이름으로 require 명령문 사용을 제안
+        esm은 공식모듈로 import 명령문 도입
+
+        브라우저에서는 import 사용가능
+    */
+</script>
+<script type="module">
+    //에러 ==> 모듈화를 하는 이유(서로 영역을 넘지 못함)
+    //hi();
+    //alert(gd);
+
+    //모듈끼리 공유하고 싶으면 window객체 이용
+    alert(window.gd2);
+</script>

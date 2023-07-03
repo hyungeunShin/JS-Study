@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script>
+    var gd = {
+        name: "홍길동",
+        job: "사람",
+        age: "미상",
+        special: "주인공"
+    }
+
+    //var vName = gd.name;
+    //var {name} = gd;
+    //alert(name);
+
+    //var {age:vage, name} = gd;  //권장하지 않음
+    //alert(name + " : " + vage);
+
+    var testArr = ["홍길동", "이길동", "김길동", "박길동"];
+    var [,gd,,,] = testArr;
+    alert(gd);
+</script>

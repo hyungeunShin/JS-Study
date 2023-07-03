@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script>
+    //this 제어가 애매할 때는 그냥 function 함수명 쓸 것
+    //this 기본은 무조건 한단계 위 상위객체를 가리킨다고 되어있다
+
+    /* var fCk = (arg) => {
+        alert(arg);
+    } */
+
+    //매개변수가 1개 일때 () 생략 가능
+    /* var fCk = arg => {
+        alert(arg);
+    } */
+
+    //fCk("ㅎㅇ")
+
+    /* var fCk = arg => {
+        return arg + "ㅂㅇ";
+    } */
+    
+    //{}안에 1개의 return문만 있을 때 {}와 return 생략 가능
+    /* var fCk = arg => arg + "ㅂㅇ";
+    alert(fCk("ㅎㅇ")); */
+
+    var fTest = function(pArg) {
+        return function(pArg) {
+            return function(pArg) {
+                return pArg + "ㅎㅇ";
+            }
+        }
+    }
+    //같은 것
+    var fTest2 = pArg => pArg => pArg => pArg + "ㅎㅇ";
+</script>
