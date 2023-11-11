@@ -1,0 +1,55 @@
+<div></div>
+<button id="버튼">버튼</button>
+
+<script>
+    var 어쩌구 = {};
+
+    function 기계() {
+        //새로 생성되는 오브젝트(instance)
+        this.이름 = 'kim';
+    }
+
+    var 오브젝트 = new 기계();
+    //기계 {이름: 'kim'}
+    console.log("오브젝트 : ", 오브젝트);
+
+    document.getElementById("버튼").addEventListener("click", function(e) {
+        //this == e.currentTarget
+        //console.log(this);
+        //console.log(e.currentTarget);
+
+        var 배열 = [1,2,3];
+        배열.forEach(function(a) {
+            //1
+            //2
+            //3
+            //console.log(a);
+            
+            //window
+            console.log(this);
+        });
+    });
+
+    var 오브젝트2 = {
+        이름들: ['김', '이', '박'],
+        함수: function() {
+            console.log("함수 : ", this);
+            오브젝트2.이름들.forEach(function() {
+                console.log(this);
+            });
+        },
+        함수2: function() {
+            console.log("함수2 : ", this);
+            오브젝트2.이름들.forEach(() => {
+                console.log(this);
+            });
+        }
+    };
+    //window
+    //콜백함수 ==> 이름없는 일반함수(전역) ==> window
+    오브젝트2.함수();
+
+    //오브젝트2
+    //arrow function ==> 내부의 this값을 변화시키지 않음
+    오브젝트2.함수2();
+</script>

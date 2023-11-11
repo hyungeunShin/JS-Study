@@ -1,0 +1,45 @@
+<div></div>
+
+<script>
+    //var, let, const
+    //선언, 할당, 범위
+
+    //var : 재선언 가능, 재할당 가능, 범위는 function
+    var 이름 = 'kim';
+    var 이름 = 'park';
+    이름 = 'hong';
+
+    function 함수() {
+        //함수 안에서만 존재
+        var 나이 = 20;
+    }
+    //나이 is not defined
+    //console.log(나이);
+
+    //let : 재선언 불가능, 재할당 가능, 범위는 {}
+    //let 나이 = 20;
+    //let 나이 = 30;
+    //나이 = 30;
+
+    if(true) {
+        let 이름2 = 'lee';
+    }
+
+    //const : 재선언 불가능, 재할당 불가능, 범위는 {}
+    //const 나이 = 20;
+    //const 나이 = 30;
+
+    //const 나이 = 20;
+    //나이 = 30;
+
+    //가능
+    const 사람 = {이름: 'kim'};
+    사람.이름 = 'park';
+
+    //수정 불가능한 오브젝트를 만들고싶으면
+    Object.freeze(사람);
+    사람.이름 = 'hong';
+
+    //사람.이름 = 'park'
+    console.log(사람);
+</script>
