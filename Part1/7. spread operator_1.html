@@ -1,0 +1,39 @@
+<script>
+    var 배열 = ['hello', 'world'];
+    //1. 배열에 붙이면 대괄호를 제거해줌
+    console.log(배열);
+    console.log(...배열); // == console.log('hello', 'world');
+
+    var 문자 = 'hello';
+    console.log(문자);
+    console.log(...문자); // == console.log('h','e','l','l','o');
+
+    var a = [1,2,3];
+    var b = [4,5];
+
+    //배열 deep copy(독립적인 자료)/합치기
+    //var c = [...a, ...b];
+    //console.log(c);
+
+    var a2 = [1,2,3];
+    var b2 = a2; 
+    var b3 = [...a2];
+
+    a2[3] = 4;
+
+    console.log(a2);
+    console.log(b2);
+    console.log(b3);
+
+    //오브젝트 deep copy/합치기
+    var o1 = {a : 1, b : 2};
+    var o2 = {...o1, c: 3};
+    console.log(o2);
+
+    var o3 = {...o1};
+    console.log(o3);
+
+    //값 중복 일어나면 가장 뒤에 있는걸 적용
+    var o4 = {a : 2, ...o1};
+    console.log(o4);
+</script>

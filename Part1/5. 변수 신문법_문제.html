@@ -1,0 +1,90 @@
+<div style="display : none">모달창0</div>
+<div style="display : none">모달창1</div>
+<div style="display : none">모달창2</div>
+
+<button>버튼0</button>
+<button>버튼1</button>
+<button>버튼2</button>
+
+<script>
+    //1.
+    //Cannot access '안녕' before initialization
+    //let, const : 호이스팅시 undefined 할당 안됨
+    /* 함수(); 
+    function 함수() {
+        console.log("1번 : ", 안녕);
+        let 안녕 = 'hello';
+    } */
+
+    //2
+    //함수2 is not a function
+    //호이스팅시 선언만 되고 할당은 안되서
+    /* 함수2();
+    var 함수2 = function() {
+        console.log("2번 : ", 안녕);
+        var 안녕 = 'hello';
+    } */
+
+    //3
+    //1
+    //함수를 실행한적이 없음, 선언하면 2
+    /* let a = 1;
+    var 함수3 = function() {
+        a = 2;
+    }
+    console.log("3번 : ", a); */
+
+    //4
+    //5
+    //a2는 나랑 가장 가까운 범위를 사용해서 a2는 1
+    //var b2나 window.b2나 같음 => 재할당해서 4
+    /* let a2 = 1;
+    var b2 = 2;
+    window.a2 = 3;
+    window.b2 = 4;
+
+    console.log("4번 : ", a2 + b2); */
+
+    //5. 1초마다 1~5까지의 숫자를 콘솔창에 출력(for문)
+    //setTimeout(function() { console.log(1); }, 1000 ); 
+    //setTimeout(function() { console.log(2); }, 2000 ); 
+    //setTimeout(function() { console.log(3); }, 3000 ); 
+    //setTimeout(function() { console.log(4); }, 4000 ); 
+    //setTimeout(function() { console.log(5); }, 5000 ); 
+    //var라서 1,2,3,4,5로 출력이 안됨
+    //var = 5; => for문을 미리 다 돌고 호이스팅됨
+    /* for(var i = 1; i < 6; i++) {
+        //let으로 바꿔주면
+        //let i = 0;
+        setTimeout(function() {
+            console.log("5번 : ", i); 
+        }, i * 1000); 
+    } */
+    //let으로 바꿔주면 해결
+
+
+    //6. for문으로
+    var 버튼들 = document.querySelectorAll('button');
+    var 모달창들 = document.querySelectorAll('div');
+
+    /* 버튼들[0].addEventListener('click', function(){
+        모달창들[0].style.display = 'block';
+    });
+
+    버튼들[1].addEventListener('click', function(){
+        모달창들[1].style.display = 'block';
+    });
+
+    버튼들[2].addEventListener('click', function(){
+        모달창들[2].style.display = 'block';
+    }); */
+
+    for(var i = 0; i < 3; i++){
+        버튼들[i].addEventListener('click', function() {
+            모달창들[i].style.display = 'block';
+        });
+    }
+    //5번과 동일
+    //let으로 바꿔주면됨
+    console.log(i); //=> 3나옴
+</script>
