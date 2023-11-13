@@ -1,0 +1,22 @@
+<script>
+    //옛날방식
+    function 함수(a, b, c) {
+        for(let i = 0; i < arguments.length; i++) {
+            console.log(arguments[i]);
+        }
+    }
+    //함수(1,2,3);
+
+    //rest 파라미터
+    function 함수2(a, b, ...파라미터들) {
+        console.log(파라미터들);
+    }
+    //함수2(1,4,5,7,8,9);
+
+    function 함수3(...rest) {
+        rest.forEach(item => {
+            console.log(item);
+        })
+    }
+    함수3(1,2,3,4,5,6,7,8,9);
+</script>

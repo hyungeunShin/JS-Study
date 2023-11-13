@@ -1,0 +1,28 @@
+<script>
+    function 더하기(a, b, c) {
+        console.log(a + b + c);
+    }
+
+    더하기(1,2,3);
+
+    var 배열 = [10, 20, 30];
+    더하기(배열[0], 배열[1], 배열[2]); //주먹구구식
+    더하기.apply(undefined, 배열);    //옛날
+    더하기(...배열);                  //요즘
+
+    //apply => 그냥 함수를 옮겨와서 실행
+    //call => 동일
+    var person = {
+        이름: "hong",
+        인사: function() {
+            console.log(this.이름 + "안녕");
+        }
+    };
+    person.인사();
+    var person2 = {
+        이름: "kim"
+    }
+
+    person.인사.apply(person2, [1,2]); //=> 얘는 배열도 가능
+    person.인사.call(person2, 1,2);
+</script>
