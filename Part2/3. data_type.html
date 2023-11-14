@@ -1,0 +1,45 @@
+<script>
+    /*
+    //primitive
+    var str = "1234";
+    var num = 1234;
+
+    //reference
+    var arr = [1,2,3];
+    var obj = {name: 'kim'};
+
+    var 이름1 = '김';
+    var 이름2 = 이름1;
+    console.log(이름1 === 이름2);
+
+    var 이름3 = {name: '김'};
+    var 이름4 = 이름3;
+    이름3.name = '박';
+    //박
+    console.log(이름3);
+    //박
+    console.log(이름4);
+    */
+
+    var 이름1 = {name: '김'};
+    var 이름2 = {name: '김'};
+
+    
+    function 변경(obj) {
+        obj = {name : 'park'};
+    }
+    변경(이름1); 
+    //{name: '김'}
+    //안바뀜
+    console.log(이름1);
+    /*
+    -----------------------------------
+    파라미터에 들어오면
+    변경(var obj = 이름1); 와 다르지 않음
+    사실 새로운 object를 생성한것
+    -----------------------------------
+    파라미터는 변수생성&할당과 동일
+    그 파라미터 변수에 = {}를 해봤자
+    원래 이름1 오브젝트는 변화X
+    */
+</script>
