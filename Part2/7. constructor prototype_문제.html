@@ -1,0 +1,54 @@
+<script>
+    //1. constructor 만들기
+    /* var 학생1 = { name : 'Kim', age : 20 }
+    var 학생2 = { name : 'Park', age : 21 }
+    var 학생3 = { name : 'Lee', age : 22 } */
+
+    function 학생(이름, 나이) {
+        this.name = 이름;
+        this.age = 나이;
+        this.sayHi = function() {
+            console.log(`안녕 나는 ${this.name}이야`);
+        }
+    }
+    var 학생1 = new 학생('Kim', 20);
+    var 학생2 = new 학생('Park', 21);
+    var 학생3 = new 학생('Lee', 22);
+    
+    //2.
+    function Parent(){
+        this.name = 'Kim';
+    }
+    var a = new Parent();   
+      
+    a.__proto__.name = 'Park';  //이건 부모 prototype에 { name : 'Park' } 이걸 추가하라는 뜻
+    console.log(a.name)         //내가 직접 가지고 있는 { name : 'Kim' } 이걸 우선 출력
+    //나부터 찾으니까
+
+    //3. arrow function은 this를 바깥에 있는 this를 그대로 사용하고 싶을 때 쓰는 함수
+    function Student(이름, 나이){
+        this.name = 이름;
+        this.age = 나이;
+    }
+      
+    Student.prototype.sayHi = () => {
+        //그래서 여기 this는 window임
+        console.log(`안녕 나는 ${this.name}이야`);
+    }
+    var 학생1 = new Student('Kim', 20);
+      
+    학생1.sayHi(); //왜 이 코드가 제대로 안나오죠?
+
+    //4.
+    var arr = [1,2,3];
+    Array.prototype.remove3 = function() {
+        for(let i = 0; i < this.length; i++) {
+            if(i === this.length - 1) {
+                this.splice(this.length - 1);
+            }
+        }
+    }
+    
+    arr.remove3();
+    console.log(arr); //[1,2] 
+</script>

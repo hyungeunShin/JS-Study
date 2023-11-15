@@ -1,0 +1,41 @@
+<script>
+    //부모
+    function Person(이름) {
+        this.name = 이름;
+        this.age = 40;
+        this.sayHi = function() {
+            console.log(`안녕하세요. ${this.name}입니다.`);
+        }
+    }
+
+    //prototype ==> 유전자
+    console.log(Person.prototype);
+    //prototype에 값을 추가하면 모든 자식들이 물려받음
+    Person.prototype.gender = '남';
+
+    //상속이라고도 함
+    //자식
+    var 사람1 = new Person('kim');
+    //gender가 안나타남
+    console.log(사람1);
+    //근데 이렇게 찍으면 gender가 나타남
+    console.log(사람1.gender);
+    /*
+    사람1.gender => 
+    1. 내가 직접 가지고 있는지 검사
+    2. 내가 가지고 있지 않으면 부모 유전자들을 차례로 검사
+    3. 없으면 계속 부모를 찾아서 올라감
+    */
+
+    //자바스크립트 내장 함수
+    //ex) [1,2,3].sort(), [1,2,3].push()
+    var array = [1,2,3];        //우리는 보통 이렇게 씀
+    var arr = new Array(1,2,3); //근데 컴퓨터는 이 과정을 거침
+    // => 상속과정을 거쳤다는 뜻
+    arr.sort();
+
+    //오브젝트도 마찬가지
+    var obj1 = {};              //우리가 쓰는거
+    var obj2 = new Object();    //컴퓨터
+    console.log(obj1.toString());
+</script>

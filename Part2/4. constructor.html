@@ -1,0 +1,34 @@
+<script>
+    //object 복사할때
+    /* var 사람1 = {name : 'kim', age : 10};
+    var 사람2 = {name : 'lee', age : 20};
+    var 사람3 = {name : 'park', age : 30}; */
+    //노가다임
+
+    var 사람4 = {
+        name : 'kim',
+        age : 15,
+        sayHi : function() {
+            console.log(`안녕하세요. ${this.name}입니다.`);
+        }
+    };
+
+    사람4.sayHi();
+
+    //constructor
+    function Person(이름) {
+        this.name = 이름;
+        this.age = 40;
+        this.sayHi = function() {
+            console.log(`안녕하세요. ${this.name}입니다.`);
+        }
+    }
+
+    //object 생성 기계
+    var 사람1 = new Person('kim');
+    var 사람2 = new Person('lee');
+    var 사람3 = new Person('park');
+
+    사람2.sayHi();
+    사람3.sayHi();
+</script>

@@ -1,0 +1,20 @@
+<script>
+    //1. prototype은 함수에만 몰래 생성됨
+    function Person(이름) {
+        this.name = 이름;
+        this.age = 40;
+        this.sayHi = function() {
+            console.log(`안녕하세요. ${this.name}입니다.`);
+        }
+    }
+    var 사람1 = new Person('kim');
+    //2. 내 부모 유전자를 보고 싶으면 __proto__
+    console.log(사람1.__proto__);
+
+    //3. __proto__를 이용하면 부모를 강제로 생성가능
+    var 부모 = {name : 'kim'};
+    var 자식 = {};
+    자식.__proto__ = 부모;
+    //부모의 이름을 쓸 수 있음
+    console.log(자식.name);
+</script>
