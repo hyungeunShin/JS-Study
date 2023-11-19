@@ -1,0 +1,27 @@
+<script>
+    //constructor 만드는 신문법
+    class 부모 {
+        constructor(aaa) {
+            this.name = aaa;
+            //자식이 직접 함수를 가짐
+            this.sayHi = function() {
+                console.log('hello');
+            }
+        }
+
+        //여기에 쓰는 함수는 부모.prototype에 추가
+        //부모.prototype으로 나타남
+        sayHi2() {
+            console.log('hello2');
+        }
+    }
+
+    부모.prototype.sayHello = function() {
+        console.log('hi');
+    }
+
+    var 자식 = new 부모('kim');
+    //자식.__proto__ === 부모.prototype
+    //Object.getPrototypeOf(자식);
+
+</script>

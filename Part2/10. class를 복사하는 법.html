@@ -1,0 +1,35 @@
+<script>
+    //유사한 class 하나 더 만들고 싶으면
+    //extends(class 상속)
+
+    class 할아버지 {
+        constructor(name) {
+            this.성 = 'kim';
+            this.이름 = name;
+        }
+        //할아버지.prototype
+        sayHi() {
+            console.log('안녕 저는 할아버지에요');
+        }
+    }
+    //var 할아버지1 = new 할아버지('길동');
+
+    //할아버지의 속성들 그대로 물려받으면서
+    //유사한 class를 만들고 싶으면
+    class 아버지 extends 할아버지 {
+        constructor(name) {
+            //extends해서 만든 class는 this를 그냥은 못씀
+            //this.나이 = 50;
+            //super() 다음에 써야 함
+            //super() : 물려받는 class의 constructor라는 뜻
+            super(name);
+            this.나이 = 50;
+        }
+        sayHi() {
+            console.log('안녕 저는 아버지에요');
+            //super == 부모.prototype
+            super.sayHi();
+        }
+    }
+    var 아버지1 = new 아버지('길길');
+</script>

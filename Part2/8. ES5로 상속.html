@@ -1,0 +1,16 @@
+<script>
+    //Object.create(프로토타입object);
+
+    var 부모 = {
+        name: 'kim',
+        age: 50
+    };
+
+    //부모가 가진 name, age를 그대로 물려받은 자식을 만들고 싶으면
+    //prototype을 부모object로 해주세요
+    var 자식 = Object.create(부모);
+    자식.age = 20;
+
+    var 손자 = Object.create(자식);
+    손자.age = 3;
+</script>
