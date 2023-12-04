@@ -1,0 +1,31 @@
+<script>
+    var arr = [1,2,3];
+    /* var a = arr[0];
+    var b = arr[1]; */
+    //var [a,b,c] = arr;
+    var [a,b,c = 3] = [1,2];
+
+    /* var obj = {
+        name : 'kim',
+        age : 30
+    }; */
+    /* var name = obj.name;
+    var age = obj.age; */
+
+    //변수명을 key명과 동일해야 함
+    //이름과 name은 동일
+    /* var { name : 이름 = 'park', age = 10 } = {
+        name : 'kim',
+        //age : 30
+    }; */
+
+    var name = 'kim';
+    var age = 30;
+    var obj1 = { name : name, age : age };
+    var obj2 = { name, age };
+    
+    function 함수({ name ,age }) {
+        console.log(name, age);
+    }
+    함수(obj1);
+</script>

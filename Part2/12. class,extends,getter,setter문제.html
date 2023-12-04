@@ -1,0 +1,74 @@
+<script>
+    //1번
+    class 강아지 {
+        constructor(type, color) {
+            this.type = type;
+            this.color = color;
+        }
+        한살먹기() {
+            if(this instanceof 고양이) {
+                this.age++;
+                return this.age;
+            } else {
+                //throw new Error('에러');
+            }
+        }
+    }
+    var 강아지1 = new 강아지('말티즈', 'white');
+    var 강아지2 = new 강아지('진돗개', 'brown');
+    console.log(강아지1);
+    console.log(강아지2);
+
+    //2번
+    class 고양이 extends 강아지 {
+        constructor(type, color, age) {
+            super(type, color);
+            this.age = age;
+        }
+    }
+    var 고양이1 = new 고양이('코숏', 'white', 5);
+    var 고양이2 = new 고양이('러시안블루', 'brown', 2);
+    console.log(고양이1);
+    console.log(고양이2);
+
+    //3번
+    //모든 고양이와 강아지 object들은 .한살먹기() 라는 함수를 사용할 수 있습니다. 
+    //(1) 한살먹기 함수는 강아지 class로부터 생성된 오브젝트가 사용하면 콘솔창에 에러를 출력해주어야합니다. 
+    //(2) 한살먹기 함수는 고양이 class로 부터 생성된 오브젝트가 사용하면 현재 가지고있는 age 속성에 1을 더해주는 기능을 실행해야합니다.
+    console.log(고양이1.한살먹기());
+    console.log(강아지1.한살먹기());
+
+    //4번
+    class Unit {
+        constructor(공격력, 체력) {
+            this.공격력 = 공격력;
+            this.체력 = 체력;
+        }
+        get battlePoint() {
+            return this.공격력 + this.체력;
+        }
+        set heal(힐) {
+            this.체력 = this.체력 + 힐;
+        }
+    }
+    var unit1 = new Unit(10, 5);
+    console.log(unit1.battlePoint);
+    unit1.heal = 10;
+    console.log(unit1);
+
+    //5번
+    var data = {
+        odd : [],
+        even : [],
+        set 구분(배열) {
+            this.odd = 배열.filter(item => item % 2 !== 0);
+            this.even = 배열.filter(item => item % 2 === 0);
+        },
+        get 합치고정렬() {
+            return [...this.odd, ...this.even].sort();
+        }
+    }
+    data.구분 = [2,1,5,4,3];
+    console.log(data);
+    console.log(data.합치고정렬);
+</script>

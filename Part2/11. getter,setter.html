@@ -1,0 +1,35 @@
+<script>
+    var 사람 = {
+        name : 'park',
+        age : 30,
+        get nextAge() {
+            //무조건 return이 있어야함
+            return this.age + 1;
+        },
+        set setAge(나이) {
+            //무조건 파라미터 하나
+            this.age = parseInt(나이);
+        }
+    };
+    //사람.setAge(20);
+    //괄호 안붙음
+    사람.setAge = '20';
+    console.log(사람.nextAge);
+
+    class 인간 {
+        constructor() {
+            this.name = 'park';
+            this.age = 20;
+        }
+        get nextAge() {
+            return this.age + 1;
+        }
+        set setAge(나이) {
+            this.age = parseInt(나이);
+        }
+    }
+    var 인간1 = new 인간();
+    인간1.setAge = '30';
+    console.log(인간1);
+    console.log(인간1.nextAge);
+</script>
