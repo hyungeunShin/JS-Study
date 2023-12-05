@@ -1,0 +1,41 @@
+<script>
+    //1+1 -> 1초 쉬고 -> 2+2
+    //안됨
+    /* console.log(1+1);
+    setTimeout(function() {}, 1000);
+    console.log(2+2); */
+
+    //됨
+    /* console.log(1+1);
+    setTimeout(function() {console.log(2+2);}, 1000);
+    console.log(3+3); */
+    //2 -> 6 -> 1초 쉬고 -> 4
+
+    /*
+        웹 브라우저는 C++로 코드가 짜여있음
+        브라우저는 실행해야할 자바스크립트 코드를 발견하면 C++로 만들어둔
+        stack에 넣고 실행
+        하지만, ajax 요청, 이벤트리스너, setTimeout 이런 코드들은
+        Stack에 쌓아서 실행하는게 아니라 잠깐 보류해놨다가 실행해야 할 코드가 완료되면
+        Stack으로 보내진다.
+        근데 Stack은 항상 바쁘기 때문에 Stack이 텅 빈 시점에 집어넣게 됨
+        
+        그래서 ajax 요청, 이벤트리스너, setTimeout 이런 코드가 실행준비가 되면 
+        Queue라는 곳에 집어넣고 Queue에 있던 코드는 Stack으로 옮겨서 실행해주는데
+        Stack에 넣어서 실행하는데 Stack이 비어있을 때만  차례로 집어넣어서 실행
+    */
+    /*
+        예를들면 for문을 1억번 돌려서 10초 정도 걸린다고 가정하면
+        10초 동안 ajax 요청, 이벤트리스너, setTimeout 이런 코드는 실행이 불가능
+        그렇기 때문에 브라우저가 멈추거나 하얗게 변하거나 버튼이 안눌리거나
+
+        그래서 Web worker를 이용
+        다른 자바스크립트 파일을 이용해서
+        그 파일에서 힘든 연산을 시키고 그게 완료가 되면 값을 가져오라고 명령
+    */
+
+    var myWorker = new Worker('3. worker.js');
+    myWorker.onmessage = function(e) {
+        console.log(e.data);
+    }
+</script>
