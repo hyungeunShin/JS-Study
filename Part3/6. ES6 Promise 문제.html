@@ -1,0 +1,62 @@
+<body>
+    <img id="test" src="https://codingapple1.github.io/kona.jpg">
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+    /* let 약속 = new Promise(function(resolve, reject) {
+        let img = document.querySelector('#test');
+        img.addEventListener('load', function() {
+            resolve();
+        });
+        img.addEventListener('error', function() {
+            reject();
+        })
+    });
+
+    약속.then(function() {
+        console.log('이미지 로딩 끝');
+    }).catch(function(e) {
+        console.log(e);
+    }); */
+
+    /* let 약속2 = new Promise(function(resolve, reject) {
+        $.ajax({
+            type: 'get',
+            url: 'https://codingapple1.github.io/hello.txt',
+            success: function(data) {
+                resolve(data);
+            },
+            error: function(xhr) {
+                reject(xhr.status);
+            }
+        }); 
+        $.get('https://codingapple1.github.io/hello.txt').done(function(결과) {
+            resolve(결과)
+        });
+    });
+    약속2.then(function(result) {
+        console.log(result);
+    }).catch(function(e) {
+        console.log(e);
+    }); */
+
+    var 프로미스 = new Promise(function(성공, 실패) {
+        $.get('https://codingapple1.github.io/hello.txt').done(function(결과){
+            성공(결과)
+        });
+    });
+    
+    프로미스.then(function(결과) {
+        console.log(결과);
+    
+        var 프로미스2 = new Promise(function(성공, 실패) {
+            $.get('https://codingapple1.github.io/hello2.txt').done(function(결과){
+                성공(결과)
+            })
+        });
+    
+        return 프로미스2;
+    }).then(function(결과) {
+        console.log(결과);
+    }) 
+</script>
