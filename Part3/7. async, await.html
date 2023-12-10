@@ -1,0 +1,49 @@
+<body>
+    <button id="btn">버튼</button>
+</body>
+<script>
+    //앞에 async를 앞에 붙이면
+    //함수 실행 후에 Promise 오브젝트가 남는다
+    async function 더하기() {
+        return 1 + 1;
+    }
+
+    /* 더하기().then(function(결과) {
+        console.log('성공');
+        console.log(결과);
+    }); */
+
+    /* async function 더하기2() {
+        var 약속 = new Promise(function(성공, 실패) {
+            var 힘든연산 = 1 + 1;
+            //성공(힘든연산); 
+            실패(힘든연산);
+        });
+
+        //await는 프로미스 실패하면 에러나고 멈춤
+        try {
+            var 결과 = await 약속;
+            console.log(결과);
+        } catch {
+            console.log('실패');
+        }
+    }
+    더하기2(); */
+
+    //버튼을 누르면 성공 판정하는 promise & 성공시 '성공'
+    async function 함수() {
+        var 약속 = new Promise(function(성공, 실패) {
+            document.querySelector('#btn').addEventListener('click', function() {
+                성공('성공함');
+            })
+        });
+
+        try {
+            var 결과 = await 약속;
+            console.log(결과);
+        } catch {
+            console.log(실패);
+        }
+    }
+    함수();
+</script>

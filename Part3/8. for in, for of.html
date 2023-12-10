@@ -1,0 +1,65 @@
+<script>
+    class 부모 {
+
+    }
+    부모.prototype.name = 'park';
+
+    //var 오브젝트 = {name : 'kim', age : 30};
+    //Object.getOwnPropertyDescriptor(오브젝트, 'name');
+    //{value: 'kim', writable: true, enumerable: true, configurable: true}
+    var 오브젝트 = new 부모();
+    
+    //for in 반복문
+    //1. enumerable(셀 수 있는) 한 것만 반복
+    //2. 부모의 prototype도 반복
+    //3. Object 자료형에만 사용
+    /* for(var key in 오브젝트) {
+        //내가 직접 가지고 있는 값만 반복 시키고 싶으면
+        console.log(key, ':', 오브젝트.hasOwnProperty(key))
+        if(오브젝트.hasOwnProperty(key)) {
+            console.log(key, ':', 오브젝트[key]);
+        }
+    } */
+
+    //for of 반복문
+    //1. Array, 문자, arguments, NodeList, Map, Set
+    //2. iterable한 자료형에만 사용 
+    //var 배열 = [2,3,4,5];
+    //var 문자 = 'ㅁㄴㅇㅁㄴㅇㅁㄴㅇ';
+
+    //for(var 자료 of 문자) {
+    //    console.log(자료);
+    //} 
+
+    //console.log(배열[Symbol.iterator]());
+    //console.log(문자[Symbol.iterator]());
+
+    /* var 배열 = [1,2,3,4,5,6,7,8,9];
+    for(let i of 배열) {
+        for(let j of 배열) {
+            console.log(`${i} x ${j} = ${i * j}`);
+        }
+    } */
+
+    var products = [
+        { name1 : 'chair', price1 : 7000 },
+        { name2 : 'sofa', price : 5000 },
+        { name1 : 'desk', price3 : 9000 }
+    ];
+    
+    let newValue;
+    let newKey;
+
+    for(let item of products) {
+        for(let key in item) {
+            //마지막글자를 숫자로변환했을 때 NaN이 안나오면 (숫자면)
+            if(isNaN(parseInt(key.slice(-1))) == false ) {
+                newValue = item[key];
+                newKey = key.slice(0, -1); 
+                item[newKey] = newValue;
+                delete item[key]; 
+            }
+        }
+    }
+    console.log(products);
+</script>
