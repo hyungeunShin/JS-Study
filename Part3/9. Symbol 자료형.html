@@ -1,0 +1,38 @@
+<script>
+    //심볼의 용도 : Object 자료형의 비밀스러운 key 값
+    /* var 심볼 = Symbol('설명 아무거나');
+    
+    var person = {
+        name : "홍길동",
+        age : 30
+    };
+    person.weight = 50;
+    
+    //비밀스러운 데이터를 저장하고 싶으면
+    var weight = Symbol('내 몸무게는 비밀');
+    person[weight] = 100;
+    
+    var height = Symbol('내 키는 비밀');
+    person[height] = 160;
+
+    for(let key in person) {
+        console.log(person[key]);
+        //몸무게는 안나타남
+    } */
+
+    //설명이 같다고 같은 Symbol이 아님
+    //Symbol 만들 때마다 유니크한 Symbol
+    //var a = Symbol('설명1');
+    //var b = Symbol('설명1');
+    //console.log(a === b); //false
+
+    //Symbol.for()는 전역
+    //같은 설명을 가지고 있는 심볼이 위에 있으면 복붙해줌
+    var a = Symbol.for('설명1');
+    var b = Symbol.for('설명1');
+    console.log(a === b);   //true
+
+    //array에 있는 기본 Symbol
+    var 배열 = [1,2,3];
+    배열[Symbol.iterator];
+</script>

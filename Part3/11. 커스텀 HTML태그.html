@@ -1,0 +1,35 @@
+<body>
+    <custom-input name="이메일"></custom-input>
+    <custom-input name="비번"></custom-input>
+</body>
+<script>
+    //Web Components
+    class 클래스 extends HTMLElement {
+        connectedCallback() {
+            //이게 더 빠름
+            //let 변수 = document.createElement('label');
+            //this.appendChild(변수);
+
+            let name = this.getAttribute('name');
+            this.innerHTML = `
+                <label>${name} 입력</label>
+                <input>
+            `;
+        }
+
+        //React, Vue에서 props가 변경되면 html 자동 재렌더링 구현
+        static get observedAttributes() {
+            return ['name', 'id', 'class'];
+        }
+        attributeChangedCallback() {
+            console.log(this.getAttribute('name'));
+            console.log(this.getAttribute('id'));
+            console.log(this.getAttribute('class'));
+            this.innerHTML = `<label>변경된 인풋</label><input>`;
+        }
+    }
+    customElements.define('custom-input', 클래스);
+
+    let 요소 = document.getElementsByName("이메일")[0];
+    요소.setAttribute('id', '123');
+</script>
